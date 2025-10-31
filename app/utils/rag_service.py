@@ -29,25 +29,25 @@ async def retrieve_relevant_chunks(query_embedding, top_k: int = 5) -> List[str]
     return [hit.payload.get("text", "") for hit in results]
 
 async def generate_answer(system_prompt: str, conversation: list, context_chunks: list, query: str) -> str:
-    # client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+    client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 
-    # context_text = "\n\n".join(context_chunks)
-    # conversation_text = "\n".join([f"{m['role']}: {m['text']}" for m in conversation[-6:]])
+    context_text = "\n\n".join(context_chunks)
+    conversation_text = "\n".join([f"{m['role']}: {m['text']}" for m in conversation[-6:]])
 
-    # prompt = (
-    #     f"{system_prompt}\n\n"
-    #     f"Context:\n{context_text}\n\n"
-    #     f"Conversation:\n{conversation_text}\n\n"
-    #     f"User: {query}\n\n"
-    #     "Use only the context to answer. If the context doesn't help, say you don't know."
-    # )
+    prompt = (
+        f"{system_prompt}\n\n"
+        f"Context:\n{context_text}\n\n"
+        f"Conversation:\n{conversation_text}\n\n"
+        f"User: {query}\n\n"
+        "Use only the context to answer. If the context doesn't help, say you don't know."
+    )
 
-    # response = await client.chat.completions.create(
-    #     model="gpt-4o-mini",
-    #     messages=[{"role": "user", "content": prompt}],
-    #     temperature=0.2,
-    #     max_tokens=512
-    # )
+    response = await client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.2,
+        max_tokens=512
+    )
 
-    # return response.choices[0].message.content.strip()
-    return "Dummy reply"
+    return response.choices[0].message.content.strip()
+    # return "Dummy reply"
