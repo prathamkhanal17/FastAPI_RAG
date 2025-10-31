@@ -1,0 +1,19 @@
+[project]
+name = "ingestionfastapi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiohttp>=3.13.2",
+    "aiosqlite>=0.21.0",
+    "fastapi>=0.120.3",
+    "fastapi-users[sqlalchemy]>=15.0.1",
+    "openai>=2.6.1",
+    "pymupdf>=1.26.5",
+    "python-dotenv>=1.2.1",
+    "qdrant-client>=1.15.1",
+    "redis>=7.0.1",
+    "sentence-transformers>=5.1.2",
+    "uvicorn>=0.38.0",
+]
